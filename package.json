@@ -1,21 +1,21 @@
 {
-  "name": "swtc-transaction-util",
+  "name": "seaa-swmo",
   "version": "1.0.0",
-  "description": "命令行钱包操作和交易工具",
+  "description": "seaa命令行demo",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GinMu/swtc-transaction-util.git"
+    "url": "git+https://github.com/yongjunfan0723/seaa-demo.git"
   },
   "author": "GinMu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GinMu/swtc-transaction-util/issues"
+    "url": "https://github.com/yongjunfan0723/seaa-demo/issues"
   },
-  "homepage": "https://github.com/GinMu/swtc-transaction-util#readme",
+  "homepage": "https://github.com/yongjunfan0723/seaa-demo#readme",
   "dependencies": {
     "bignumber.js": "^9.0.0",
     "commander": "^3.0.2",
