@@ -40,38 +40,38 @@ const generate = (password, secret) => {
 };
 
 const getSeaaAddress = (secret) => {
-    return jtWallet.getAddress(secret, "seaa");
-  },
+  return jtWallet.getAddress(secret, "seaa");
+};
 
-  const generateKeystore = async () => {
-    let secret = program.secret;
-    let password = program.password;
-    const keystoreFile = "./keystore/wallet.json";
-    try {
-      if (!secret) {
-        secret = readlineSync.question("Please Enter Secret:", { hideEchoBack: true });
-      }
-      if (!password) {
-        password = readlineSync.question("Please Enter Password:", { hideEchoBack: true });
-      }
-      let wallet;
-      try {
-        wallet = fs.readFileSync(keystoreFile, { encoding: "utf-8" });
-      } catch (error) {
-        wallet = null;
-      }
-
-      let newWallet;
-      if (JingchangWallet.isValid(wallet)) {
-        const instance = new JingchangWallet(JSON.parse(wallet), true, false);
-        newWallet = await instance.importSecret(secret, password, "seaa", getSeaaAddress);
-      } else {
-        newWallet = await generate(password, secret);
-      }
-      fs.writeFileSync(keystoreFile, JSON.stringify(newWallet, null, 2), { encoding: "utf-8" });
-    } catch (error) {
-      console.log(error);
+const generateKeystore = async () => {
+  let secret = program.secret;
+  let password = program.password;
+  const keystoreFile = "./keystore/wallet.json";
+  try {
+    if (!secret) {
+      secret = readlineSync.question("Please Enter Secret:", { hideEchoBack: true });
     }
+    if (!password) {
+      password = readlineSync.question("Please Enter Password:", { hideEchoBack: true });
+    }
+    let wallet;
+    try {
+      wallet = fs.readFileSync(keystoreFile, { encoding: "utf-8" });
+    } catch (error) {
+      wallet = null;
+    }
+
+    let newWallet;
+    if (JingchangWallet.isValid(wallet)) {
+      const instance = new JingchangWallet(JSON.parse(wallet), true, false);
+      newWallet = await instance.importSecret(secret, password, "seaa", getSeaaAddress);
+    } else {
+      newWallet = await generate(password, secret);
+    }
+    fs.writeFileSync(keystoreFile, JSON.stringify(newWallet, null, 2), { encoding: "utf-8" });
+  } catch (error) {
+    console.log(error);
   }
+}
 
 generateKeystore();
