@@ -24,10 +24,8 @@ const getSecret = async () => {
     const keystore = fs.readFileSync("./keystore/wallet.json", { encoding: "utf-8" });
     const instance = new JingchangWallet(JSON.parse(keystore), true, false);
     instance.getSecretWithAddress(password, address).then((secret) => {
-      if (jtWallet.isValidSecret(secret)) {
-        console.log(`${address} 密钥`, secret)
-        return secret;
-      }
+      console.log(`${address} 密钥`, secret)
+      return secret;
     }).catch((error) => {
       console.log(error.message)
     });
