@@ -22,4 +22,11 @@ address #钱包地址
 password #密码
 node get-secret.js -A $address -P $passowrd
 
+# 通过密钥获得地址
+secret #钱包秘钥
+node get-address.js -s $secret
+
+# 创建seaa钱包
+node create-seaa-wallet.js
+
 ```
