@@ -1,5 +1,5 @@
 {
-  "name": "seaa-swmo",
+  "name": "seaa-demo",
   "version": "1.0.0",
   "description": "seaa命令行demo",
   "main": "index.js",
@@ -19,7 +19,7 @@
   "dependencies": {
     "bignumber.js": "^9.0.0",
     "commander": "^3.0.2",
-    "jcc_exchange": "^3.1.15",
+    "jcc_exchange": "^3.1.16",
     "jcc_wallet": "^1.0.5",
     "readline-sync": "^1.4.10"
   }
