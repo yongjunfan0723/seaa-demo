@@ -3,6 +3,7 @@ const BigNumber = require("bignumber.js");
 const fs = require("fs");
 const { ExplorerFactory } = require("jcc_rpc");
 const { JingchangWallet, jtWallet } = require("jcc_wallet");
+const config = require("./config");
 
 program
   .usage('[options] <file ...>')
@@ -41,21 +42,11 @@ const getBalances = async () => {
   }
 }
 
-// const getBalance = async (address) => {
-//   const inst = ExplorerFactory.init(["https://explorer.jccdex.cn"]);
-//   const res = await inst.getBalances(Date.now(), address);
-//   if (!res.result) {
-//     throw new Error(res.msg);
-//   }
-//   console.log(`${address} 资产: `, res.data)
-//   return res.data;
-// }
-
 const getBalance = (address, timeout = 0) => {
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
       try {
-        const inst = ExplorerFactory.init(["https://seaascan.jccdex.cn"]);
+        const inst = ExplorerFactory.init(config.explorerNodes);
         const res = await inst.getBalances(Date.now(), address);
         if (res.result) {
           console.log(`${address} 资产: `, handleBalance(res.data));
