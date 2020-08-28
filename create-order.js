@@ -18,13 +18,11 @@ program
   .option('-c, --counter <path>', "token名称")
   .option('-p, --price <path>', "价格")
   .option('-t, --type <path>', "买或卖")
-  // .option('-s, --sequence <path>', "交易序列号")
   .parse(process.argv);
 
 const deal = async () => {
   const { counter, base, price, amount, type, address } = program;
   let password = program.password;
-  // let sequence = program.sequence;
   try {
     if (!password) {
       password = readlineSync.question("Please Enter Password:", { hideEchoBack: true });
@@ -36,14 +34,7 @@ const deal = async () => {
     const nodes = config.rpcNodes;
     JCCExchange.init(nodes);
     // const tx = serializeCreateOrder(address, amount, base, counter, sum, type, "", issuer = "dG5yrYL2z9hanawx3gF6trgNkzNtjJm3eF");
-    // if (!sequence) {
-    //   try {
-    //     sequence = await JCCExchange.getSequence(tx.Account);
-    //   } catch (error) {
-    //     console.log("get sequence error:", error.message);
-    //   }
-    // }
-    // tx.Sequence = sequence;
+    // tx.Sequence = await JCCExchange.getSequence(tx.Account);
     // delete tx.Platform;
     // const signedData = sign(tx, secret, "seaaps", true);
     // const blob = signedData.blob;
