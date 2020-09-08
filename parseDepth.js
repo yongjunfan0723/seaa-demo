@@ -62,11 +62,15 @@ const mergePrice = (offers) => {
   return result;
 };
 
-const parseDepth = (bids, asks) => {
-  const parsedBids = parseOrderBook(bids);
-  const parsedAsks = parseOrderBook(asks, true);
+const parseDepth = (bids, asks, address) => {
+  let parsedBids = parseOrderBook(bids);
+  let parsedAsks = parseOrderBook(asks, true);
   parsedAsks.sort(sortAsks);
   parsedBids.sort(sortBids);
+  if (address) {
+    parsedAsks = parsedAsks.filter(ask => ask.account === address);
+    parsedBids = parsedBids.filter(bid => bid.account === address);
+  }
   console.log("没根据价格合并前的卖单:", parsedAsks);
   console.log("没根据价格合并前的买单:", parsedBids);
   return {
