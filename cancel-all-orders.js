@@ -47,7 +47,7 @@ const cancelOrders = async () => {
   const keystore = fs.readFileSync("./keystore/wallet.json", { encoding: "utf-8" });
   const instance = new JingchangWallet(JSON.parse(keystore), true, false);
   const secret = await instance.getSecretWithAddress(password, address);
-  const nodes = config.rpcNodes;
+  const nodes = await config.getRpcNodes();
   JCCExchange.init(nodes);
 
   while (true) {

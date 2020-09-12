@@ -18,7 +18,7 @@ const polling = async () => {
   try {
     const subscribeInst = SubscribeFactory.init();
     const pollingName = "testPollingName";
-    const rpcNodes = config.rpcNodes;
+    const rpcNodes = await config.getRpcNodes();
     const rpcNode = rpcNodes[Math.floor(Math.random() * rpcNodes.length)];
     const pollingTask = testFactory.getConfig.bind(testFactory, { url: rpcNode, base: "testb", counter: "testu", limit: 10 });
     subscribeInst.register(pollingName, pollingTask, poll, timer).on(pollingName, callback).start(pollingName);

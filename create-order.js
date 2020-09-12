@@ -31,7 +31,7 @@ const deal = async () => {
     const instance = new JingchangWallet(JSON.parse(keystore), true, false);
     const secret = await instance.getSecretWithAddress(password, address);
     const sum = new BigNumber(price).multipliedBy(amount).toString(10);
-    const nodes = config.rpcNodes;
+    const nodes = await config.getRpcNodes();
     JCCExchange.init(nodes);
     // const tx = serializeCreateOrder(address, amount, base, counter, sum, type, "", issuer = "dG5yrYL2z9hanawx3gF6trgNkzNtjJm3eF");
     // tx.Sequence = await JCCExchange.getSequence(tx.Account);

@@ -24,7 +24,7 @@ const getBalances = async () => {
         if (Array.isArray(wallets) && wallets.length > 0) {
           for (let i = 0; i < wallets.length; i++) {
             address = wallets[i].address;
-            await getBalance(address, i === 0 ? 0 : 500);
+            await getBalance(address, i === 0 ? 0 : 300);
           }
         } else {
           console.log("keystore文件里无钱包");
