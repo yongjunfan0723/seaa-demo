@@ -73,7 +73,7 @@ const deal = async () => {
         sum = counterBalance.available;
         amount = new BigNumber(sum).div(price).precision(16, 1).toString(10);
       } catch (error) {
-        console.log(`挂买单获取${counter.toUpperCase()} 资产发生错误: `, error.message);
+        console.log(`挂买单获取${counter.toUpperCase()} 资产发生错误: `, error);
         process.exit();
       }
     } else { // 卖单
@@ -82,7 +82,7 @@ const deal = async () => {
         amount = baseBalance.available;
         sum = new BigNumber(amount).multipliedBy(price).precision(16, 1).toString(10);
       } catch (error) {
-        console.log(`挂卖单获取${base.toUpperCase()} 资产发生错误: `, error.message);
+        console.log(`挂卖单获取${base.toUpperCase()} 资产发生错误: `, error);
         process.exit();
       }
     }
