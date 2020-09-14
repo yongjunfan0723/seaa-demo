@@ -78,8 +78,8 @@ const deal = async () => {
       const nodes = config.rpcNodes;
       JCCExchange.init(nodes);
   while(true){
-  try{
     let hasFailed=false;
+  try{
     if (String(type) === "buy") { // 买单
       try {
         const counterBalance = await getBalance(address, counter);
