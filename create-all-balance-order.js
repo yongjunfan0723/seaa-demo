@@ -7,6 +7,7 @@ const { JCCExchange, sign } = require("jcc_exchange");
 const { serializeCreateOrder } = require("jcc_exchange/lib/tx");
 const JingchangWallet = require("jcc_wallet").JingchangWallet;
 const config = require("./config");
+const { jtWallet } = require("jcc_wallet");
 JCCExchange.setDefaultChain("seaaps");
 
 program
@@ -63,10 +64,22 @@ const deal = async () => {
   let password = program.password;
   let sum = "";
   let amount = "";
-  try {
     if (!password) {
       password = readlineSync.question("Please Enter Password:", { hideEchoBack: true });
     }
+    if(!jtWallet.isValidAddress(address.trim(),"seaa")){
+      console.log(address+" :地址不合法")
+      process.exit();
+    }
+    const keystore = fs.readFileSync("./keystore/wallet.json", { encoding: "utf-8" });
+    const instance = new JingchangWallet(JSON.parse(keystore), true, false);
+    try{
+      const secret = await instance.getSecretWithAddress(password, address);
+      const nodes = config.rpcNodes;
+      JCCExchange.init(nodes);
+  while(true){
+  try{
+    let hasFailed=false;
     if (String(type) === "buy") { // 买单
       try {
         const counterBalance = await getBalance(address, counter);
@@ -74,7 +87,7 @@ const deal = async () => {
         amount = new BigNumber(sum).div(price).precision(16, 1).toString(10);
       } catch (error) {
         console.log(`挂买单获取${counter.toUpperCase()} 资产发生错误: `, error);
-        process.exit();
+          break;
       }
     } else { // 卖单
       try {
@@ -83,14 +96,9 @@ const deal = async () => {
         sum = new BigNumber(amount).multipliedBy(price).precision(16, 1).toString(10);
       } catch (error) {
         console.log(`挂卖单获取${base.toUpperCase()} 资产发生错误: `, error);
-        process.exit();
+          break;
       }
     }
-    const keystore = fs.readFileSync("./keystore/wallet.json", { encoding: "utf-8" });
-    const instance = new JingchangWallet(JSON.parse(keystore), true, false);
-    const secret = await instance.getSecretWithAddress(password, address);
-    const nodes = config.rpcNodes;
-    JCCExchange.init(nodes);
     const tx = serializeCreateOrder(address, amount, base, counter, sum, type, "", issuer = "dG5yrYL2z9hanawx3gF6trgNkzNtjJm3eF");
     tx.Sequence = await JCCExchange.getSequence(tx.Account);
     delete tx.Platform;
@@ -99,9 +107,17 @@ const deal = async () => {
     const hash = await JCCExchange.sendRawTransaction(blob);
     // const hash = await JCCExchange.createOrder(address, secret, amount, base, counter, sum, type, address, issuer = "dG5yrYL2z9hanawx3gF6trgNkzNtjJm3eF");
     console.log("挂单成功:", hash);
-  } catch (error) {
+  }catch(error){
     console.log("挂单失败:", error.message);
+    hasFailed=true;
   }
+  if(!hasFailed){
+    break;
+  }
+  }
+    }catch(error){
+console.log(error.message)
+    }
 }
 
 deal()
