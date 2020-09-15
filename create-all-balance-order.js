@@ -64,60 +64,60 @@ const deal = async () => {
   let password = program.password;
   let sum = "";
   let amount = "";
-    if (!password) {
-      password = readlineSync.question("Please Enter Password:", { hideEchoBack: true });
-    }
-    if(!jtWallet.isValidAddress(address.trim(),"seaa")){
-      console.log(address+" :地址不合法")
-      process.exit();
-    }
-    const keystore = fs.readFileSync("./keystore/wallet.json", { encoding: "utf-8" });
-    const instance = new JingchangWallet(JSON.parse(keystore), true, false);
-    try{
-      const secret = await instance.getSecretWithAddress(password, address);
-      const nodes = config.rpcNodes;
-      JCCExchange.init(nodes);
-  while(true){
-    let hasFailed=false;
-  try{
-    if (String(type) === "buy") { // 买单
+  if (!password) {
+    password = readlineSync.question("Please Enter Password:", { hideEchoBack: true });
+  }
+  if (!jtWallet.isValidAddress(address.trim(), "seaa")) {
+    console.log(address + " :地址不合法")
+    process.exit();
+  }
+  const keystore = fs.readFileSync("./keystore/wallet.json", { encoding: "utf-8" });
+  const instance = new JingchangWallet(JSON.parse(keystore), true, false);
+  try {
+    const secret = await instance.getSecretWithAddress(password, address);
+    const nodes = config.rpcNodes;
+    JCCExchange.init(nodes);
+    while (true) {
+      let hasFailed = false;
       try {
-        const counterBalance = await getBalance(address, counter);
-        sum = counterBalance.available;
-        amount = new BigNumber(sum).div(price).precision(16, 1).toString(10);
+        if (String(type) === "buy") { // 买单
+          try {
+            const counterBalance = await getBalance(address, counter);
+            sum = counterBalance.available;
+            amount = new BigNumber(sum).div(price).precision(16, 1).toString(10);
+          } catch (error) {
+            console.log(`挂买单获取${counter.toUpperCase()} 资产发生错误: `, error);
+            break;
+          }
+        } else { // 卖单
+          try {
+            const baseBalance = await getBalance(address, base);
+            amount = baseBalance.available;
+            sum = new BigNumber(amount).multipliedBy(price).precision(16, 1).toString(10);
+          } catch (error) {
+            console.log(`挂卖单获取${base.toUpperCase()} 资产发生错误: `, error);
+            break;
+          }
+        }
+        const tx = serializeCreateOrder(address, amount, base, counter, sum, type, "", issuer = "dG5yrYL2z9hanawx3gF6trgNkzNtjJm3eF");
+        tx.Sequence = await JCCExchange.getSequence(tx.Account);
+        delete tx.Platform;
+        const signedData = sign(tx, secret, "seaaps", true);
+        const blob = signedData.blob;
+        const hash = await JCCExchange.sendRawTransaction(blob);
+        // const hash = await JCCExchange.createOrder(address, secret, amount, base, counter, sum, type, address, issuer = "dG5yrYL2z9hanawx3gF6trgNkzNtjJm3eF");
+        console.log("挂单成功:", hash);
       } catch (error) {
-        console.log(`挂买单获取${counter.toUpperCase()} 资产发生错误: `, error);
-          break;
+        console.log("挂单失败:", error.message);
+        hasFailed = true;
       }
-    } else { // 卖单
-      try {
-        const baseBalance = await getBalance(address, base);
-        amount = baseBalance.available;
-        sum = new BigNumber(amount).multipliedBy(price).precision(16, 1).toString(10);
-      } catch (error) {
-        console.log(`挂卖单获取${base.toUpperCase()} 资产发生错误: `, error);
-          break;
+      if (!hasFailed) {
+        break;
       }
     }
-    const tx = serializeCreateOrder(address, amount, base, counter, sum, type, "", issuer = "dG5yrYL2z9hanawx3gF6trgNkzNtjJm3eF");
-    tx.Sequence = await JCCExchange.getSequence(tx.Account);
-    delete tx.Platform;
-    const signedData = sign(tx, secret, "seaaps", true);
-    const blob = signedData.blob;
-    const hash = await JCCExchange.sendRawTransaction(blob);
-    // const hash = await JCCExchange.createOrder(address, secret, amount, base, counter, sum, type, address, issuer = "dG5yrYL2z9hanawx3gF6trgNkzNtjJm3eF");
-    console.log("挂单成功:", hash);
-  }catch(error){
-    console.log("挂单失败:", error.message);
-    hasFailed=true;
+  } catch (error) {
+    console.log(error.message)
   }
-  if(!hasFailed){
-    break;
-  }
-  }
-    }catch(error){
-console.log(error.message)
-    }
 }
 
 deal()
