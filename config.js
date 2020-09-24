@@ -16,7 +16,7 @@ module.exports = {
     // "https://seaaswtcrpc.jccdex.cn"
   ],
   explorerNodes: [
-    "https://devseaascan.jccdex.cn:8443",
-    // "https://seaascan.jccdex.cn"
+    // "https://devseaascan.jccdex.cn:8443",
+    "https://seaascan.jccdex.cn"
   ]
 }
