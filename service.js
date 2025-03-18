@@ -9,7 +9,7 @@ service.interceptors.response.use(
   },
   (err) => {
     console.log(err.message);
-    return Promise.resolve({ result: { offers: [] } });
+    return Promise.resolve({ result: { offers: [], ledger_current_index: "" } });
   }
 );
 

@@ -1,23 +1,24 @@
-const program = require('commander');
+const { program } = require("commander");
 const fs = require("fs");
 const readlineSync = require("readline-sync");
-const { JingchangWallet, jtWallet } = require("jcc_wallet");
+const { JingchangWallet } = require("jcc_wallet");
+const { Wallet } = require("@jccdex/jingtum-lib");
 
 program
-  .usage('[options] <file ...>')
   .option('-A, --address <path>', "钱包地址")
   .option('-P, --password <path>', "密码")
   .parse(process.argv);
 
-const address = program.address;
-if (address && !jtWallet.isValidAddress(address, "seaa")) {
+const { address } = program.opts();
+const wallet = new Wallet('seaaps')
+if (address && !wallet.isValidAddress(address)) {
   console.log("钱包地址不合法")
   process.exit(0);
 }
 
 const getSecret = async () => {
   try {
-    let password = program.password;
+    let { password } = program.opts();
     if (!password) {
       password = readlineSync.question("Please Enter Password:", { hideEchoBack: true });
     }

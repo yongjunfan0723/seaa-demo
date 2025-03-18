@@ -1,5 +1,6 @@
 const parseDepth = require("./parseDepth").parseDepth;
 const service = require("./service");
+const BigNumber = require("bignumber.js");
 
 const bookOffers = async (options) => {
   const { url, base, counter, limit } = options;
@@ -39,8 +40,13 @@ const fetchDepth = async (options) => {
     bookOffers(options)
   ]);
   const offers = orders.map((order) => order.result.offers);
+  const ledger_indexs = orders.map((order) => order.result.ledger_current_index);
+  const ledger_index =
+    ledger_indexs && ledger_indexs.length && (ledger_indexs[0] || ledger_indexs[1])
+      ? new BigNumber(ledger_indexs[0]).toString(10) || new BigNumber(ledger_indexs[1]).toString(10)
+      : "";
   const depth = parseDepth(offers[0], offers[1], wallet);
-  return depth;
+  return Object.assign({ ledger_index }, depth);
 };
 
 module.exports = { fetchDepth };

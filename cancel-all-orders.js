@@ -1,80 +1,103 @@
-const program = require('commander');
+const { program } = require("commander");
 const fs = require("fs");
 const readlineSync = require("readline-sync");
-const { ExplorerFactory } = require("jcc_rpc");
-const JCCExchange = require("jcc_exchange").JCCExchange;
-const JingchangWallet = require("jcc_wallet").JingchangWallet;
+const { Transaction, Wallet } = require("@jccdex/jingtum-lib");
+const _ = require("lodash");
+const { JCCDexExplorer } = require("@jccdex/cloud");
+const { JingchangWallet } = require("jcc_wallet")
 const config = require("./config");
-JCCExchange.setDefaultChain("seaaps");
+const sleep = require("./utils/sleep");
 
 program
-  .usage('[options] <file ...>')
   .option('-A, --address <path>', "钱包地址")
   .option('-P, --password <path>', "keystore密码")
   .parse(process.argv);
 
 const getOrders = async (address) => {
-  const explorerInst = ExplorerFactory.init(config.explorerNodes);
-  const page = 0;
-  const size = 100;
-  const res = await explorerInst.getOrders(Date.now(), address, page, size);
-  if (res.result) {
-    return res.data;
-  } else {
-    throw new Error(res.msg);
+  const explorerNodes = config.explorerNodes
+  const explorerUrl = explorerNodes[Math.floor(Math.random() * explorerNodes.length)];
+  const explorer = new JCCDexExplorer(explorerUrl);
+  let page = 0;
+  let totalPage = 0;
+  const size = explorer.pageSize.HUNDRED;
+  let orderList = [];
+  while (true) {
+    try {
+      const res = await explorer.fetchOffers({ uuid: Date.now(), address, page, size });
+      const { offers, count } = res.data;
+        if (offers.length === 0 || count === 0) {
+          break;
+        }
+        totalPage = Math.floor(count / size);
+        orderList = [...offers, ...orderList];
+        page++;
+        if (page > totalPage) {
+          break;
+        }
+    } catch (err) {
+      const message = err.message
+      const status = _.get(err, 'status') || _.get(err, 'response.status')
+      console.log("获取挂单失败:", message);
+      if (message === "Network Error" || status === 404) {
+        break;
+      }
+    }
   }
+  console.log("全部挂单共有多少条:", orderList.length);
+  return { list: orderList, count: orderList.length };
 }
 
-const cancelOrder = (address, secret, seq, timeout) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(async () => {
-      try {
-        const hash = await JCCExchange.cancelOrder(address, secret, seq);
-        resolve(hash);
-      } catch (error) {
-        reject(error);
-      }
-    }, timeout)
-  })
-}
+const cancelOrder = async (transaction, address, secret, seq, timeout) => {
+  await sleep(timeout);
+  const hash = await transaction.cancelOrder(address, secret, seq);
+  return hash;
+};
 
 const cancelOrders = async () => {
-  const { address } = program;
-  let password = program.password;
+  const { address } = program.opts();
+  const wallet = new Wallet('seaaps')
+  if (!wallet.isValidAddress(address.trim())) {
+    console.log(`${address} 不合法`);
+    return;
+  }
+  let { password } = program.opts();
   if (!password) {
     password = readlineSync.question("Please Enter Password:", { hideEchoBack: true });
   }
-  const keystore = fs.readFileSync("./keystore/wallet.json", { encoding: "utf-8" });
-  const instance = new JingchangWallet(JSON.parse(keystore), true, false);
-  const secret = await instance.getSecretWithAddress(password, address);
-  const nodes = await config.getRpcNodes();
-  JCCExchange.init(nodes);
-
-  while (true) {
-    try {
-      const { list, count } = await getOrders(address);
-      if (!Array.isArray(list) || list.length === 0) {
-        console.log(`${address} 无挂单`);
-        break;
-      }
-      let hasFailed = false;
-      for (const key in list) {
-        const seq = list[key].seq;
-        try {
-          const hash = await cancelOrder(address, secret, seq, key === 0 ? 0 : 500);
-          console.log("撤销成功: ", hash);
-        } catch (error) {
-          console.log("撤销失败: ", error);
-          hasFailed = true;
+  try {
+    const keystore = fs.readFileSync("./keystore/wallet.json", { encoding: "utf-8" });
+    const instance = new JingchangWallet(JSON.parse(keystore), true, false);
+    const secret = await instance.getSecretWithAddress(password, address);
+    const nodes = await config.getRpcNodes();
+    const transaction = new Transaction({ wallet, nodes, retry: 3 });
+    const { list, count } = await getOrders(address);
+    while (true) {
+      try {
+        if (!Array.isArray(list) || list.length === 0) {
+          console.log(`${address} 无挂单`);
+          break;
         }
+        let hasFailed = false;
+        for (const key in list) {
+          const seq = list[key].seq;
+          try {
+            const hash = await cancelOrder(transaction, address, secret, seq, key === 0 ? 0 : 500);
+            console.log("撤销成功: ", hash);
+          } catch (error) {
+            console.log("撤销失败: ", error);
+            hasFailed = true;
+          }
+        }
+        if (!hasFailed && list.length === count) {
+          console.log("撤销完成");
+          break;
+        }
+      } catch (error) {
+        console.log(error);
       }
-      if (!hasFailed && list.length === count) {
-        console.log("撤销完成");
-        break;
-      }
-    } catch (error) {
-      console.log(error);
     }
+  } catch(err) {
+    console.log("撤单过程错误:", err.message);
   }
 }
 

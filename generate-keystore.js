@@ -1,35 +1,35 @@
-const program = require('commander');
+const { program } = require("commander");
 const fs = require("fs");
 const readlineSync = require("readline-sync");
-const { JingchangWallet, jtWallet } = require("jcc_wallet");
+const { JingchangWallet } = require("jcc_wallet");
+const { Wallet } = require("@jccdex/jingtum-lib");
 const { encryptWallet } = require("jcc_wallet/lib/util");
 
 program
-  .usage('[options] <file ...>')
   .option('-s, --secret <path>', "秘钥")
   .option('-p, --password <path>', "密码")
   .parse(process.argv);
 
-
+const seaaWallet =  new Wallet('seaaps')
 const generate = (password, secret) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(async(resolve, reject) => {
     const keypairs = {};
     if (!secret) {
-      const wallet = jtWallet.createWallet("seaa");
+      const wallet = seaaWallet.createWallet();
       secret = wallet.secret;
       keypairs.address = wallet.address;
     } else {
-      if (!jtWallet.isValidSecret(secret, "seaa")) {
+      if (!seaaWallet.isValidSecret(secret)) {
         return reject(new Error("Secret is invalid"));
       }
-      keypairs.address = jtWallet.getAddress(secret, "seaa");
+      keypairs.address = seaaWallet.getAddress(secret);
     }
     keypairs.secret = secret;
     keypairs.type = "seaa";
     keypairs.default = true;
     keypairs.alias = "seaa wallet";
     const jcWallet = {};
-    const walletObj = encryptWallet(password, keypairs);
+    const walletObj = await encryptWallet(password, keypairs);
     jcWallet.version = JingchangWallet.version;
     jcWallet.id = JingchangWallet._walletID;
     jcWallet.contact = {};
@@ -40,12 +40,11 @@ const generate = (password, secret) => {
 };
 
 const getSeaaAddress = (secret) => {
-  return jtWallet.getAddress(secret, "seaa");
+  return seaaWallet.getAddress(secret);
 };
 
 const generateKeystore = async () => {
-  let secret = program.secret;
-  let password = program.password;
+  let { secret, password } = program.opts();
   const keystoreFile = "./keystore/wallet.json";
   try {
     if (!secret) {

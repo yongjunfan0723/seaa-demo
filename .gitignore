@@ -66,3 +66,5 @@ dist
 
 keystore
 shell.md
+.yarn
+.vscode

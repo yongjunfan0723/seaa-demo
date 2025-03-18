@@ -1,17 +1,17 @@
-const program = require('commander');
+const { program } = require("commander");
 const BigNumber = require("bignumber.js");
 const fs = require("fs");
-const { ExplorerFactory } = require("jcc_rpc");
-const { JingchangWallet, jtWallet } = require("jcc_wallet");
+const { JCCDexExplorer } = require("@jccdex/cloud");
+const { JingchangWallet } = require("jcc_wallet");
+const { Wallet } = require("@jccdex/jingtum-lib");
 const config = require("./config");
+const sleep = require("./utils/sleep");
 
-program
-  .usage('[options] <file ...>')
-  .option('-A, --address <path>', "钱包地址")
-  .parse(process.argv);
+program.option("-A, --address <path>", "钱包地址").parse(process.argv);
 
-let address = program.address;
-if (address && !jtWallet.isValidAddress(address, "seaa")) {
+let { address } = program.opts();
+const wallet = new Wallet('seaaps')
+if (address && !wallet.isValidAddress(address)) {
   console.log("钱包地址不合法")
   process.exit(0);
 }
@@ -43,48 +43,29 @@ const getBalances = async () => {
 }
 
 const getBalance = (address, timeout = 0) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(async () => {
-      try {
-        const inst = ExplorerFactory.init(config.explorerNodes);
-        const res = await inst.getBalances(Date.now(), address);
-        if (res.result) {
-          console.log(`${address} 资产: `, handleBalance(res.data));
-          resolve(res.data);
-        } else {
-          reject(res.msg);
-        }
-      } catch (error) {
-        reject(error);
-      }
-    }, timeout)
-  })
-}
+  return new Promise(async (resolve, reject) => {
+    const explorerHosts = config.explorerNodes
+    await sleep(timeout);
+    try {
+      const explorerUrl = explorerHosts[Math.floor(Math.random() * explorerHosts.length)];
+      const explorer = new JCCDexExplorer(explorerUrl);
+      const res = await explorer.fetchBalances({ uuid: Date.now(), address });
+      console.log(`${address} 资产: `, handleBalance(res.data.balances));
+      resolve(res.data);
+    } catch (error) {
+      console.log(`${address}: `, error.message);
+      resolve(null);
+    }
+  });
+};
 
 const handleBalance = (data) => {
-  let arr = [];
-  for (const key in data) {
-    const obj = data[key];
-    if (key === "_id" || key === "feeflag") {
-      continue;
-    }
-    const isZero = new BigNumber(obj.value).isZero();
-    if (isZero) {
-      continue;
-    }
-    let [currency] = key.split("_");
-    if (currency.toUpperCase() === "CNY") {
-      currency = "CNT";
-    }
-    const balanceObj = {
-      currency: currency,
-      // total: obj.value,
-      frozen: obj.frozen,
-      available: new BigNumber(obj.value).minus(obj.frozen).toString(10)
-    }
-    arr.push(balanceObj)
-  }
-  return arr;
-}
+  const balances = data.filter(({ value }) => !new BigNumber(value).isZero());
+  return balances.map(({ value, currency, issuer, frozen }) => ({
+    currency,
+    frozen: new BigNumber(frozen).toString(10),
+    available: new BigNumber(value).minus(frozen).toString(10)
+  }));
+};
 
 getBalances()
