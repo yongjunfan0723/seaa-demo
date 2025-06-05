@@ -27,5 +27,8 @@
     "lodash": "^4.17.21",
     "readline-sync": "^1.4.10"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.9.2",
+  "devDependencies": {
+    "pretty-quick": "^4.2.2"
+  }
 }
