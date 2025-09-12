@@ -245,7 +245,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.12.0":
+"axios@npm:^1.7.2":
   version: 1.12.0
   resolution: "axios@npm:1.12.0"
   dependencies:
@@ -253,17 +253,6 @@ __metadata:
     form-data: "npm:^4.0.4"
     proxy-from-env: "npm:^1.1.0"
   checksum: 10c0/44a1e4cfb69a2d59aa12bbc441a336e5c18e87c02b904c509fd33607d94e8cb8cc221c17e9d53f67841a4efe13abf1aa1497c85df390cdb8681ee723998d11b0
-  languageName: node
-  linkType: hard
-
-"axios@npm:^1.7.2":
-  version: 1.8.3
-  resolution: "axios@npm:1.8.3"
-  dependencies:
-    follow-redirects: "npm:^1.15.6"
-    form-data: "npm:^4.0.0"
-    proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/de75da9859adf0a6481d4af2b687db357a054d20f0d69b99d502b71dae3578326b1fdc0951dabaef769827484941cda93d3f89150bf9e04f05f6615fb8316780
   languageName: node
   linkType: hard
 
@@ -520,7 +509,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data@npm:^4.0.0, form-data@npm:^4.0.4":
+"form-data@npm:^4.0.4":
   version: 4.0.4
   resolution: "form-data@npm:4.0.4"
   dependencies:
@@ -859,7 +848,6 @@ __metadata:
     "@jccdex/cloud": "npm:^1.0.4"
     "@jccdex/jingtum-lib": "npm:^1.0.2"
     "@swtc/utils": "npm:^1.1.1"
-    axios: "npm:^1.12.0"
     bignumber.js: "npm:^9.3.1"
     commander: "npm:^14.0.0"
     jcc_wallet: "npm:4.0.3"
