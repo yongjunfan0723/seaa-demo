@@ -20,9 +20,9 @@
     "@jccdex/cloud": "^1.0.4",
     "@jccdex/jingtum-lib": "^1.0.2",
     "@swtc/utils": "^1.1.1",
-    "axios": "^1.12.0",
+    "axios": "^1.12.2",
     "bignumber.js": "^9.3.1",
-    "commander": "^14.0.0",
+    "commander": "^14.0.1",
     "jcc_wallet": "4.0.3",
     "lodash": "^4.17.21",
     "readline-sync": "^1.4.10"
