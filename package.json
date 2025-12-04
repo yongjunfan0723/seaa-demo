@@ -29,7 +29,7 @@
   },
   "packageManager": "yarn@4.12.0",
   "devDependencies": {
-    "prettier": "^3.7.3",
+    "prettier": "^3.7.4",
     "pretty-quick": "^4.2.2"
   }
 }
