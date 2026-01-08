@@ -735,9 +735,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jcc_wallet@npm:^4.0.6":
-  version: 4.0.6
-  resolution: "jcc_wallet@npm:4.0.6"
+"jcc_wallet@npm:^4.0.7":
+  version: 4.0.7
+  resolution: "jcc_wallet@npm:4.0.7"
   dependencies:
     base-x: "npm:^4.0.1"
     bip39: "npm:^3.1.0"
@@ -746,7 +746,7 @@ __metadata:
     ethereum-cryptography: "npm:^3.2.0"
     ethers: "npm:^6.16.0"
     lockr: "npm:^0.8.5"
-  checksum: 10c0/9ffd7bec437e6fac5d35cba43aa2e7dcae22c4c97f91cd900fef32fc580f7bec9125067704f2ab777eb72cca1f16493c0da2a5d5dc3573ddec7ab53425d5b2ed
+  checksum: 10c0/d427c6ff55dbe104f2d328b50e18ac14cff67dda27e78e7015da47ecbef982c708dfd2404977b80970b42ccb6e21c144cf031b544819c26db5553b71fa8c248a
   languageName: node
   linkType: hard
 
@@ -941,7 +941,7 @@ __metadata:
     axios: "npm:^1.13.2"
     bignumber.js: "npm:^9.3.1"
     commander: "npm:^14.0.2"
-    jcc_wallet: "npm:^4.0.6"
+    jcc_wallet: "npm:^4.0.7"
     lodash: "npm:^4.17.21"
     prettier: "npm:^3.7.4"
     pretty-quick: "npm:^4.2.2"
