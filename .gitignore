@@ -68,3 +68,4 @@ keystore
 shell.md
 .yarn
 .vscode
+.DS_Store
