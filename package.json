@@ -20,7 +20,7 @@
     "@jccdex/cloud": "^1.0.4",
     "@jccdex/jingtum-lib": "^1.0.2",
     "@swtc/utils": "^1.1.1",
-    "axios": "^1.13.2",
+    "axios": "^1.13.3",
     "bignumber.js": "^9.3.1",
     "commander": "^14.0.2",
     "jcc_wallet": "^4.0.8",
