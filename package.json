@@ -22,7 +22,7 @@
     "@swtc/utils": "^1.1.1",
     "axios": "^1.13.4",
     "bignumber.js": "^9.3.1",
-    "commander": "^14.0.2",
+    "commander": "^14.0.3",
     "jcc_wallet": "^4.0.8",
     "lodash": "^4.17.23",
     "readline-sync": "^1.4.10"
