@@ -21,7 +21,7 @@
     "@jccdex/jingtum-lib": "^1.0.2",
     "@swtc/utils": "^1.1.1",
     "axios": "^1.15.0",
-    "bignumber.js": "^10.0.2",
+    "bignumber.js": "^11.0.0",
     "commander": "^14.0.3",
     "jcc_wallet": "^4.0.8",
     "lodash": "^4.18.1",

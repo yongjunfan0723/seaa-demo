@@ -281,10 +281,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bignumber.js@npm:^10.0.2":
-  version: 10.0.2
-  resolution: "bignumber.js@npm:10.0.2"
-  checksum: 10c0/471a17d851d275e458156d090c028b8851c84389dc41db79b08dd584b4df1e4d24f70b1684705a5974aec6c59dc8511337007e01bd78d8ed8d93e1a541356a7f
+"bignumber.js@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "bignumber.js@npm:11.0.0"
+  checksum: 10c0/a3675125b7bff72a618981d05e938e5318b1b9994fed6802a6d1330ea00ef2f3f8a0b90fa44872d43f34331aa4f5977276c775c170748ace516e4eecf6f216a3
   languageName: node
   linkType: hard
 
@@ -969,7 +969,7 @@ __metadata:
     "@jccdex/jingtum-lib": "npm:^1.0.2"
     "@swtc/utils": "npm:^1.1.1"
     axios: "npm:^1.15.0"
-    bignumber.js: "npm:^10.0.2"
+    bignumber.js: "npm:^11.0.0"
     commander: "npm:^14.0.3"
     jcc_wallet: "npm:^4.0.8"
     lodash: "npm:^4.18.1"
