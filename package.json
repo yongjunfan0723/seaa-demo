@@ -20,14 +20,14 @@
     "@jccdex/cloud": "^1.0.4",
     "@jccdex/jingtum-lib": "^1.0.2",
     "@swtc/utils": "^1.1.1",
-    "axios": "^1.15.0",
+    "axios": "^1.15.2",
     "bignumber.js": "^11.0.0",
     "commander": "^14.0.3",
     "jcc_wallet": "^4.0.8",
     "lodash": "^4.18.1",
     "readline-sync": "^1.4.10"
   },
-  "packageManager": "yarn@4.13.0",
+  "packageManager": "yarn@4.14.1",
   "devDependencies": {
     "prettier": "^3.8.3",
     "pretty-quick": "^4.2.2"
