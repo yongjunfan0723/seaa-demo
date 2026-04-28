@@ -135,10 +135,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swtc/address-codec@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@swtc/address-codec@npm:1.2.0"
+  dependencies:
+    "@swtc/common": "npm:^1.2.0"
+    base-x: "npm:^3.0.7"
+    create-hash: "npm:^1.2.0"
+  checksum: 10c0/5ee06e310d845b0ad02d77c7b50aeddef3d172a95f7d2e461d7de5a739414e61a6241be56a9d24ee2211fa4e709dce71c5cef4ac6fda49c9509e1be67a209a54
+  languageName: node
+  linkType: hard
+
 "@swtc/common@npm:^1.1.1":
   version: 1.1.1
   resolution: "@swtc/common@npm:1.1.1"
   checksum: 10c0/0609a3ab78dd8ebb8b97642f886e6bfa49dfbb83ad502f7baa4698c384aba58f093bdef1d16bc774d9daeaac6376deeb182ff247a82a950ed7b46a7bbede770f
+  languageName: node
+  linkType: hard
+
+"@swtc/common@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@swtc/common@npm:1.2.0"
+  checksum: 10c0/31ceb632cbd0073e600262dc4b1c0980a9cc091d20e6e2dbef59e341ba23aa49fe8e681c2151aad174e348a2dba36d172712cebbdef486dcc74eb2e63856d95a
   languageName: node
   linkType: hard
 
@@ -154,6 +172,21 @@ __metadata:
     elliptic: "npm:^6.4.0"
     hash.js: "npm:^1.0.3"
   checksum: 10c0/b51de2ba676323c5384cc757689ddd22655fd9ab6a5a86cb90591310d50ee2f57063f6949f2f866fbf79369b9c23c5a0d5b38a7641e9273236dcaf2d3bad2563
+  languageName: node
+  linkType: hard
+
+"@swtc/keypairs@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@swtc/keypairs@npm:1.2.0"
+  dependencies:
+    "@swtc/address-codec": "npm:^1.2.0"
+    "@swtc/common": "npm:^1.2.0"
+    "@swtc/sm.js": "npm:^0.1.12"
+    bn.js: "npm:^4.12.3"
+    brorand: "npm:^1.1.0"
+    elliptic: "npm:^6.6.0"
+    hash.js: "npm:^1.0.3"
+  checksum: 10c0/d0ee1ce1eee1eb6037724399402dbaaf2e1e57c8eda9806d8ffc48c82ba0f29ec8a1439b4882d387cb64657ef9d0d35f1a355d5e2180e282bb9a34d4e1f9b998
   languageName: node
   linkType: hard
 
@@ -187,16 +220,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swtc/utils@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@swtc/utils@npm:1.1.1"
+"@swtc/utils@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@swtc/utils@npm:1.2.0"
   dependencies:
-    "@swtc/address-codec": "npm:^1.1.1"
-    "@swtc/common": "npm:^1.1.1"
-    "@swtc/keypairs": "npm:^1.1.4"
-    "@swtc/wallet": "npm:^1.1.1"
+    "@swtc/address-codec": "npm:^1.2.0"
+    "@swtc/common": "npm:^1.2.0"
+    "@swtc/keypairs": "npm:^1.2.0"
+    "@swtc/wallet": "npm:^1.2.0"
     bignumber.js: "npm:^9.0.0"
-  checksum: 10c0/6e1cde292d1facc517e5c267a2d3b6b70545b2989f32c11952ac8526f20ac5e1c9b608a9be0a463c22f86032af01e3360fb1ab65ef163157fdad922adcd49c87
+  checksum: 10c0/0768489cd24b30aae68c4c187b5a2aa18acb010f91906f11d66dbe5e8e63c4a704b0e9c6fd416b27298ddace78932514c00f61176f93c7c62bbae070a85ed06e
   languageName: node
   linkType: hard
 
@@ -208,6 +241,17 @@ __metadata:
     "@swtc/common": "npm:^1.1.1"
     "@swtc/keypairs": "npm:^1.1.4"
   checksum: 10c0/7c78db4386d33a29fbc845a78089c10c697b3a09699e01044d2e0371e314e12502c4fd1804b74bd832d999c9d7b66bee48af866194b16d3c44ff357054d9753a
+  languageName: node
+  linkType: hard
+
+"@swtc/wallet@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@swtc/wallet@npm:1.2.0"
+  dependencies:
+    "@swtc/address-codec": "npm:^1.2.0"
+    "@swtc/common": "npm:^1.2.0"
+    "@swtc/keypairs": "npm:^1.2.0"
+  checksum: 10c0/aa5540dabef22109656efb0c4b4207fdd4a54b6193aff78b321f44e04279332bd3f828b0a53e1c799ad915999a904b93397996e77ff0e70832c44b3094337479
   languageName: node
   linkType: hard
 
@@ -322,6 +366,13 @@ __metadata:
   version: 4.12.1
   resolution: "bn.js@npm:4.12.1"
   checksum: 10c0/b7f37a0cd5e4b79142b6f4292d518b416be34ae55d6dd6b0f66f96550c8083a50ffbbf8bda8d0ab471158cb81aa74ea4ee58fe33c7802e4a30b13810e98df116
+  languageName: node
+  linkType: hard
+
+"bn.js@npm:^4.12.3":
+  version: 4.12.3
+  resolution: "bn.js@npm:4.12.3"
+  checksum: 10c0/53b6a4db8a583abd2522eacd480fece26fe6c4d8d35d03e5e11e15cb0873a3044eb4e3d1f9fef56f47eb008219e99ba5b620c26f57db49a687c6ab2cf848d50b
   languageName: node
   linkType: hard
 
@@ -457,7 +508,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"elliptic@npm:^6.4.0":
+"elliptic@npm:^6.4.0, elliptic@npm:^6.6.0":
   version: 6.6.1
   resolution: "elliptic@npm:6.6.1"
   dependencies:
@@ -967,7 +1018,7 @@ __metadata:
   dependencies:
     "@jccdex/cloud": "npm:^1.0.4"
     "@jccdex/jingtum-lib": "npm:^1.0.2"
-    "@swtc/utils": "npm:^1.1.1"
+    "@swtc/utils": "npm:^1.2.0"
     axios: "npm:^1.15.2"
     bignumber.js: "npm:^11.0.0"
     commander: "npm:^14.0.3"
