@@ -12,25 +12,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jccdex/cloud@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "@jccdex/cloud@npm:1.0.4"
+"@jccdex/cloud@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "@jccdex/cloud@npm:1.0.5"
   dependencies:
-    axios: "npm:^1.7.2"
-  checksum: 10c0/13ec34e31f7fe5f1d5ea07e6898ca8f6f470354ca2056427eb38e25b5e9fd9b490208f641fe3ed1930ea218ec09f9b27181e04a65e0ef00000c6ede69311924a
+    axios: "npm:^1.15.0"
+  checksum: 10c0/b7ca2f296137d4e1af359e8dc051ce86227a0347edb7f130d97c15fcf76758448909ebb406e1c61bc27762e13fa093b72a40b4e36c2a49ed6f4a57e61d7c104c
   languageName: node
   linkType: hard
 
-"@jccdex/jingtum-lib@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@jccdex/jingtum-lib@npm:1.0.2"
+"@jccdex/jingtum-lib@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@jccdex/jingtum-lib@npm:1.0.3"
   dependencies:
-    "@swtc/serializer": "npm:^1.1.0"
-    "@swtc/wallet": "npm:^1.0.20"
-    axios: "npm:^1.7.2"
-    lodash.clonedeep: "npm:^4.5.0"
-    utf8: "npm:^3.0.0"
-  checksum: 10c0/e453eeb5117ef6eb1ebe811b2607e3c86493e369ea5c40ae2ac65abc39313d3735134b1e8824b5f8ed5404b21aff6b910295b2dddc7e0a87b4d25b3f2852258f
+    "@swtc/serializer": "npm:1.2.0"
+    "@swtc/wallet": "npm:1.2.0"
+    axios: "npm:1.15.2"
+    lodash.clonedeep: "npm:4.5.0"
+    utf8: "npm:3.0.0"
+  checksum: 10c0/f83f9de5a07dfd760028fb4f718c656e3575a9a19853e112eee7a46c82bf58776fd5477624c1f709e3995d24ed0c3fb6d99c7c058edd45e13b6bed25b9e29038
   languageName: node
   linkType: hard
 
@@ -124,17 +124,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swtc/address-codec@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@swtc/address-codec@npm:1.1.1"
-  dependencies:
-    "@swtc/common": "npm:^1.1.1"
-    base-x: "npm:^3.0.7"
-    create-hash: "npm:^1.2.0"
-  checksum: 10c0/5dd3e5087828f63053d63ac122465a135ee90aba347b2e16da21e9c9ad9b45b2a9d9b742d8630f6891746f59d6f70f5af44114abaa4fdc31aaa86a06dc189254
-  languageName: node
-  linkType: hard
-
 "@swtc/address-codec@npm:^1.2.0":
   version: 1.2.0
   resolution: "@swtc/address-codec@npm:1.2.0"
@@ -146,32 +135,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swtc/common@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@swtc/common@npm:1.1.1"
-  checksum: 10c0/0609a3ab78dd8ebb8b97642f886e6bfa49dfbb83ad502f7baa4698c384aba58f093bdef1d16bc774d9daeaac6376deeb182ff247a82a950ed7b46a7bbede770f
-  languageName: node
-  linkType: hard
-
 "@swtc/common@npm:^1.2.0":
   version: 1.2.0
   resolution: "@swtc/common@npm:1.2.0"
   checksum: 10c0/31ceb632cbd0073e600262dc4b1c0980a9cc091d20e6e2dbef59e341ba23aa49fe8e681c2151aad174e348a2dba36d172712cebbdef486dcc74eb2e63856d95a
-  languageName: node
-  linkType: hard
-
-"@swtc/keypairs@npm:^1.1.4":
-  version: 1.1.4
-  resolution: "@swtc/keypairs@npm:1.1.4"
-  dependencies:
-    "@swtc/address-codec": "npm:^1.1.1"
-    "@swtc/common": "npm:^1.1.1"
-    "@swtc/sm.js": "npm:^0.1.12"
-    bn.js: "npm:^4.4.0"
-    brorand: "npm:^1.1.0"
-    elliptic: "npm:^6.4.0"
-    hash.js: "npm:^1.0.3"
-  checksum: 10c0/b51de2ba676323c5384cc757689ddd22655fd9ab6a5a86cb90591310d50ee2f57063f6949f2f866fbf79369b9c23c5a0d5b38a7641e9273236dcaf2d3bad2563
   languageName: node
   linkType: hard
 
@@ -190,20 +157,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swtc/serializer@npm:^1.1.0":
-  version: 1.1.1
-  resolution: "@swtc/serializer@npm:1.1.1"
+"@swtc/serializer@npm:1.2.0":
+  version: 1.2.0
+  resolution: "@swtc/serializer@npm:1.2.0"
   dependencies:
-    "@swtc/address-codec": "npm:^1.1.1"
-    "@swtc/common": "npm:^1.1.1"
-    "@swtc/keypairs": "npm:^1.1.4"
-    "@swtc/wallet": "npm:^1.1.1"
+    "@swtc/address-codec": "npm:^1.2.0"
+    "@swtc/common": "npm:^1.2.0"
+    "@swtc/keypairs": "npm:^1.2.0"
+    "@swtc/wallet": "npm:^1.2.0"
     bignumber.js: "npm:^9.0.0"
     bn-plus.js: "npm:^1.0.0"
     extend: "npm:^3.0.2"
     jsbn: "npm:^1.1.0"
-    sha1: "npm:^1.1.1"
-  checksum: 10c0/21febb404a1a6fb7782115cbe744c9b3546154b815d58816d52ecbebaa9d5f9d4bd97eb58c3482d82027749140dc20ec037666f7bc6dd5ef2863ebf2f8695a7e
+  checksum: 10c0/49e40ca5c5bca019dc8e5f291d02a4b5e9df51329e7d8790f21b60b9316bc4a7d16eee8b4cc1af395d2824abe1846e4913beea6e61edc07f6137c29cd596a02a
   languageName: node
   linkType: hard
 
@@ -233,18 +199,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swtc/wallet@npm:^1.0.20, @swtc/wallet@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@swtc/wallet@npm:1.1.1"
-  dependencies:
-    "@swtc/address-codec": "npm:^1.1.1"
-    "@swtc/common": "npm:^1.1.1"
-    "@swtc/keypairs": "npm:^1.1.4"
-  checksum: 10c0/7c78db4386d33a29fbc845a78089c10c697b3a09699e01044d2e0371e314e12502c4fd1804b74bd832d999c9d7b66bee48af866194b16d3c44ff357054d9753a
-  languageName: node
-  linkType: hard
-
-"@swtc/wallet@npm:^1.2.0":
+"@swtc/wallet@npm:1.2.0, @swtc/wallet@npm:^1.2.0":
   version: 1.2.0
   resolution: "@swtc/wallet@npm:1.2.0"
   dependencies:
@@ -287,7 +242,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.15.2":
+"axios@npm:1.15.2, axios@npm:^1.15.0, axios@npm:^1.15.2":
   version: 1.15.2
   resolution: "axios@npm:1.15.2"
   dependencies:
@@ -295,17 +250,6 @@ __metadata:
     form-data: "npm:^4.0.5"
     proxy-from-env: "npm:^2.1.0"
   checksum: 10c0/4eeae0feeaa7fdc1ef24f81f8b378fdadedf4aebdd6bf224484675160f8744cf17b9b0d1c215279979940f7e8ce463beffa2f713099612e428eac238515c81d5
-  languageName: node
-  linkType: hard
-
-"axios@npm:^1.7.2":
-  version: 1.8.3
-  resolution: "axios@npm:1.8.3"
-  dependencies:
-    follow-redirects: "npm:^1.15.6"
-    form-data: "npm:^4.0.0"
-    proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/de75da9859adf0a6481d4af2b687db357a054d20f0d69b99d502b71dae3578326b1fdc0951dabaef769827484941cda93d3f89150bf9e04f05f6615fb8316780
   languageName: node
   linkType: hard
 
@@ -362,7 +306,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bn.js@npm:^4.11.6, bn.js@npm:^4.11.9, bn.js@npm:^4.4.0":
+"bn.js@npm:^4.11.6, bn.js@npm:^4.11.9":
   version: 4.12.1
   resolution: "bn.js@npm:4.12.1"
   checksum: 10c0/b7f37a0cd5e4b79142b6f4292d518b416be34ae55d6dd6b0f66f96550c8083a50ffbbf8bda8d0ab471158cb81aa74ea4ee58fe33c7802e4a30b13810e98df116
@@ -415,13 +359,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"charenc@npm:>= 0.0.1":
-  version: 0.0.2
-  resolution: "charenc@npm:0.0.2"
-  checksum: 10c0/a45ec39363a16799d0f9365c8dd0c78e711415113c6f14787a22462ef451f5013efae8a28f1c058f81fc01f2a6a16955f7a5fd0cd56247ce94a45349c89877d8
-  languageName: node
-  linkType: hard
-
 "cipher-base@npm:^1.0.1":
   version: 1.0.6
   resolution: "cipher-base@npm:1.0.6"
@@ -469,13 +406,6 @@ __metadata:
     ripemd160: "npm:^2.0.1"
     sha.js: "npm:^2.4.0"
   checksum: 10c0/d402e60e65e70e5083cb57af96d89567954d0669e90550d7cec58b56d49c4b193d35c43cec8338bc72358198b8cbf2f0cac14775b651e99238e1cf411490f915
-  languageName: node
-  linkType: hard
-
-"crypt@npm:>= 0.0.1":
-  version: 0.0.2
-  resolution: "crypt@npm:0.0.2"
-  checksum: 10c0/adbf263441dd801665d5425f044647533f39f4612544071b1471962209d235042fb703c27eea2795c7c53e1dfc242405173003f83cf4f4761a633d11f9653f18
   languageName: node
   linkType: hard
 
@@ -603,35 +533,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.15.6":
-  version: 1.15.9
-  resolution: "follow-redirects@npm:1.15.9"
-  peerDependenciesMeta:
-    debug:
-      optional: true
-  checksum: 10c0/5829165bd112c3c0e82be6c15b1a58fa9dcfaede3b3c54697a82fe4a62dd5ae5e8222956b448d2f98e331525f05d00404aba7d696de9e761ef6e42fdc780244f
-  languageName: node
-  linkType: hard
-
 "for-each@npm:^0.3.5":
   version: 0.3.5
   resolution: "for-each@npm:0.3.5"
   dependencies:
     is-callable: "npm:^1.2.7"
   checksum: 10c0/0e0b50f6a843a282637d43674d1fb278dda1dd85f4f99b640024cfb10b85058aac0cc781bf689d5fe50b4b7f638e91e548560723a4e76e04fe96ae35ef039cee
-  languageName: node
-  linkType: hard
-
-"form-data@npm:^4.0.0":
-  version: 4.0.4
-  resolution: "form-data@npm:4.0.4"
-  dependencies:
-    asynckit: "npm:^0.4.0"
-    combined-stream: "npm:^1.0.8"
-    es-set-tostringtag: "npm:^2.1.0"
-    hasown: "npm:^2.0.2"
-    mime-types: "npm:^2.1.12"
-  checksum: 10c0/373525a9a034b9d57073e55eab79e501a714ffac02e7a9b01be1c820780652b16e4101819785e1e18f8d98f0aee866cc654d660a435c378e16a72f2e7cac9695
   languageName: node
   linkType: hard
 
@@ -845,7 +752,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.clonedeep@npm:^4.5.0":
+"lodash.clonedeep@npm:4.5.0":
   version: 4.5.0
   resolution: "lodash.clonedeep@npm:4.5.0"
   checksum: 10c0/2caf0e4808f319d761d2939ee0642fa6867a4bbf2cfce43276698828380756b99d4c4fa226d881655e6ac298dd453fe12a5ec8ba49861777759494c534936985
@@ -963,13 +870,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"proxy-from-env@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "proxy-from-env@npm:1.1.0"
-  checksum: 10c0/fe7dd8b1bdbbbea18d1459107729c3e4a2243ca870d26d34c2c1bcd3e4425b7bcc5112362df2d93cc7fb9746f6142b5e272fd1cc5c86ddf8580175186f6ad42b
-  languageName: node
-  linkType: hard
-
 "proxy-from-env@npm:^2.1.0":
   version: 2.1.0
   resolution: "proxy-from-env@npm:2.1.0"
@@ -1016,8 +916,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "seaa-demo@workspace:."
   dependencies:
-    "@jccdex/cloud": "npm:^1.0.4"
-    "@jccdex/jingtum-lib": "npm:^1.0.2"
+    "@jccdex/cloud": "npm:^1.0.5"
+    "@jccdex/jingtum-lib": "npm:^1.0.3"
     "@swtc/utils": "npm:^1.2.0"
     axios: "npm:^1.15.2"
     bignumber.js: "npm:^11.0.0"
@@ -1054,16 +954,6 @@ __metadata:
   bin:
     sha.js: bin.js
   checksum: 10c0/9d36bdd76202c8116abbe152a00055ccd8a0099cb28fc17c01fa7bb2c8cffb9ca60e2ab0fe5f274ed6c45dc2633d8c39cf7ab050306c231904512ba9da4d8ab1
-  languageName: node
-  linkType: hard
-
-"sha1@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "sha1@npm:1.1.1"
-  dependencies:
-    charenc: "npm:>= 0.0.1"
-    crypt: "npm:>= 0.0.1"
-  checksum: 10c0/1bb36c89c112c741c265cca66712f883ae01d5c55b71aec80635fe2ad5d0c976a1a8a994dda774ae9f93b2da99fd111238758a8bf985adc400bd86f0e4452865
   languageName: node
   linkType: hard
 
@@ -1135,7 +1025,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"utf8@npm:^3.0.0":
+"utf8@npm:3.0.0":
   version: 3.0.0
   resolution: "utf8@npm:3.0.0"
   checksum: 10c0/675d008bab65fc463ce718d5cae8fd4c063540f269e4f25afebce643098439d53e7164bb1f193e0c3852825c7e3e32fbd8641163d19a618dbb53f1f09acb0d5a
