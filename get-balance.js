@@ -49,7 +49,7 @@ const getBalance = (address, timeout = 0) => {
     try {
       const explorerUrl = explorerHosts[Math.floor(Math.random() * explorerHosts.length)];
       const explorer = new JCCDexExplorer(explorerUrl);
-      const res = await explorer.fetchBalances({ uuid: Date.now(), address });
+      const res = await explorer.fetchBalances({ uuid: String(Date.now()), address });
       console.log(`${address} 资产: `, handleBalance(res.data.balances));
       resolve(res.data);
     } catch (error) {

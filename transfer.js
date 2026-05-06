@@ -35,7 +35,7 @@ const sendRawTransaction = async (transaction, blob) => {
 
 const getBalance = async (address, explorer) => {
   try {
-    const res = await explorer.fetchBalances({ address, uuid: Date.now() });
+    const res = await explorer.fetchBalances({ address, uuid: String(Date.now()) });
     const { balances } = res.data;
     const filteredBalances = balances.filter(({ value }) => !new BigNumber(value).isZero());
     return filteredBalances.map((item) =>({ ...item, available: new BigNumber(item.value).minus(item.frozen)} ));
