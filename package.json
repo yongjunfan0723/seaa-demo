@@ -28,7 +28,7 @@
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
-    "prettier": "^3.8.3",
+    "prettier": "^3.8.4",
     "pretty-quick": "^4.2.2"
   },
   "packageManager": "yarn@4.16.0"
